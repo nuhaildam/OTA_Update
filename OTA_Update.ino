@@ -12,7 +12,7 @@ const char * password = "0000035007abYZ";
 
 
 String FirmwareVer = {
-  "1.0"
+  "1.1"
 };
 #define URL_fw_Version "https://github.com/nuhaildam/OTA_Update/blob/main/bin_version.txt"
 #define URL_fw_Bin "https://github.com/nuhaildam/OTA_Update/blob/main/fw.bin"
@@ -63,7 +63,7 @@ void Task_Buzzer(void *pvParameters) {
     vTaskDelay(50);
     //delay(50);
     digitalWrite(BuzzPin, LOW);
-    vTaskDelay(5000);
+    vTaskDelay(10000);
     //delay(1000);
   }
 }
