@@ -5,6 +5,7 @@
 #include "cert.h"
 
 #define LED_BUILTIN  25
+#define BuzzPin 25
 
 const char * ssid = "i47Net";
 const char * password = "0000035007abYZ";
@@ -13,8 +14,8 @@ const char * password = "0000035007abYZ";
 String FirmwareVer = {
   "1.0"
 };
-#define URL_fw_Version "https://raw.githubusercontent.com/programmer131/ESP8266_ESP32_SelfUpdate/master/esp32_ota/bin_version.txt"
-#define URL_fw_Bin "https://raw.githubusercontent.com/programmer131/ESP8266_ESP32_SelfUpdate/master/esp32_ota/fw.bin"
+#define URL_fw_Version "https://github.com/nuhaildam/OTA_Update/blob/main/bin_version.txt"
+#define URL_fw_Bin "https://github.com/nuhaildam/OTA_Update/blob/main/fw.bin"
 
 //#define URL_fw_Version "http://cade-make.000webhostapp.com/version.txt"
 //#define URL_fw_Bin "http://cade-make.000webhostapp.com/firmware.bin"
@@ -54,6 +55,19 @@ void repeatedCall() {
   }
 }
 
+void Task_Buzzer(void *pvParameters) {
+  pinMode(BuzzPin, OUTPUT);
+  
+  while(1) {
+    digitalWrite(BuzzPin, HIGH);
+    vTaskDelay(50);
+    //delay(50);
+    digitalWrite(BuzzPin, LOW);
+    vTaskDelay(5000);
+    //delay(1000);
+  }
+}
+
 struct Button {
   const uint8_t PIN;
   uint32_t numberKeyPresses;
@@ -84,6 +98,7 @@ void setup() {
   Serial.print("Active firmware version:");
   Serial.println(FirmwareVer);
   pinMode(LED_BUILTIN, OUTPUT);
+  xTaskCreatePinnedToCore(Task_Buzzer, "Task_Buzzer", 2048, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
   connect_wifi();
 }
 void loop() {
