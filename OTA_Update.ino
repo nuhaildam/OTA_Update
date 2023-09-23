@@ -12,10 +12,10 @@ const char * password = "0000035007abYZ";
 
 
 String FirmwareVer = {
-  "1.1"
+  "1.2"
 };
-#define URL_fw_Version "https://github.com/nuhaildam/OTA_Update/blob/main/bin_version.txt"
-#define URL_fw_Bin "https://github.com/nuhaildam/OTA_Update/blob/main/fw.bin"
+#define URL_fw_Version "https://raw.githubusercontent.com/nuhaildam/OTA_Update/blob/main/bin_version.txt"
+#define URL_fw_Bin "https://raw.githubusercontent.com/nuhaildam/OTA_Update/blob/main/fw.bin"
 
 //#define URL_fw_Version "http://cade-make.000webhostapp.com/version.txt"
 //#define URL_fw_Bin "http://cade-make.000webhostapp.com/firmware.bin"
